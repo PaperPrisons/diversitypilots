@@ -241,23 +241,7 @@
     <script src="../../scripts/main.js"></script>
     <script>
         // Load navbar and footer - paths are relative to components folder
-        loadComponent("navbar", "../navbar.html").then(() => {
-            // Fix navbar links to work from blogdetails folder (need to go up 2 levels)
-            const navbar = document.getElementById("navbar");
-            if (navbar) {
-                const links = navbar.querySelectorAll("a[href]");
-                links.forEach(link => {
-                    const href = link.getAttribute("href");
-                    if (href && href.startsWith("../") && !href.startsWith("../../")) {
-                        link.setAttribute("href", "../" + href);
-                    } else if (href && href.startsWith("./")) {
-                        link.setAttribute("href", "../../" + href.substring(2));
-                    } else if (href && !href.startsWith("http") && !href.startsWith("/") && !href.startsWith("../")) {
-                        link.setAttribute("href", "../../" + href);
-                    }
-                });
-            }
-        });
+        loadComponent("navbar", "../navbar.html");
         loadComponent("footer", "../footer.html");
     </script>
 </body>

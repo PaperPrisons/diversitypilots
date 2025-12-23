@@ -25,6 +25,28 @@ function initNavbar() {
             menu.classList.toggle("hidden");
         });
     }
+    
+    // Fix navbar links based on current page location
+    const currentPath = window.location.pathname;
+    const isBlogDetails = currentPath.includes('/components/blogdetails/');
+    const isComponents = currentPath.includes('/components/') && !isBlogDetails;
+    
+    // Calculate base path
+    let basePath = '';
+    if (isBlogDetails) {
+        basePath = '../../';
+    } else if (isComponents) {
+        basePath = '../';
+    } else {
+        basePath = './';
+    }
+    
+    // Update all navbar links
+    const navLinks = document.querySelectorAll('[data-nav-link]');
+    navLinks.forEach(link => {
+        const targetFile = link.getAttribute('data-nav-link');
+        link.setAttribute('href', basePath + targetFile);
+    });
 }
 
 // Accordion toggle function for diary page
