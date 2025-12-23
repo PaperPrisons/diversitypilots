@@ -1,0 +1,61 @@
+<!-- WRAPPER THAT CONTROLS HOVER -->
+<div class="group">
+
+
+    
+  <!-- CONTACT SECTION (SITS ABOVE FOOTER, HIDDEN UNTIL HOVER) -->
+  <section
+    class="bg-[#8C1D40] text-white overflow-hidden max-h-0 opacity-0 relative z-50
+           translate-y-4 group-hover:max-h-[2000px] group-hover:opacity-100
+           group-hover:translate-y-0 group-hover:py-12 transition-all duration-500 ease-out px-6 py-0
+           flex justify-center"
+  >
+    <div class="container px-5 py-24 mx-auto contact">
+              <div class="flex flex-col text-center w-full mb-12">
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 tex-base">Contact Us</h1>
+                <p class="lg:w-1/2 mx-auto leading-relaxed text-base">If you wish to contact us, please fill out the entire form below and press the "Send Message" button. If you wish to sign up for email updates from us, please only fill out your
+                  name and email in the form below and press the "Sign Up for Updates" button.
+              </p></div>
+              <script src="https://www.google.com/recaptcha/api.js" async="" defer=""></script>
+              <form class="lg:w-1/2 md:w-2/3 mx-auto" method="POST" action="contactform.php" id="contact-form">
+                <div class="flex flex-wrap -m-2">
+                  <div class="p-2 w-1/2">
+                    <input class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-gray-900 px-4 py-2" id="txt_name" placeholder="Name" type="text" name="name" required="">
+                  </div>
+                  <div class="p-2 w-1/2">
+                    <input class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-gray-900 px-4 py-2" id="txt_email" placeholder="Email" type="text" name="email" required="">
+                  </div>
+                  <div class="p-2 w-full h-1/2">
+                    <textarea class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none focus:border-indigo-500 text-gray-900 px-4 py-2" placeholder="Subject" id="subject" type="text" name="subject" required=""></textarea>
+                  </div>
+                  <div class="p-2 w-full">
+                    <textarea class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none h-48 focus:border-indigo-500 text-gray-900 px-4 py-2 resize-none block" placeholder="Message" id="message" type="text" name="message" required=""></textarea>
+                  </div>
+                  <div class="p-2 w-1/2">
+                    <div class="g-recaptcha" data-sitekey="6LfvUXIeAAAAAHTQahzKmM0Idihgt_nbXihArE73"><div style="width: 304px; height: 78px;"><div><iframe title="reCAPTCHA" width="304" height="78" role="presentation" name="a-kxj8og37ozos" allow="private-token" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LfvUXIeAAAAAHTQahzKmM0Idihgt_nbXihArE73&amp;co=aHR0cHM6Ly9wYXBlcnByaXNvbnMub3JnOjQ0Mw..&amp;hl=en&amp;v=TkacYOdEJbdB_JjX802TMer9&amp;size=normal&amp;anchor-ms=20000&amp;execute-ms=15000&amp;cb=alp7oehfvlto"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div>
+                  </div>
+                  <div class="p-2 w-full">
+                    <button style="float: left" class="flex mx-auto text-gray-900 bg-gray-100 border-0 py-2 px-8 focus:outline-none hover:bg-black hover:text-white rounded text-lg" type="button" id="submitCon1" name="btnMessage" value="Message" target="_blank">Send
+                      Message</button>
+                    <button style="float: right" class="flex mx-auto text-gray-900 bg-gray-100 border-0 py-2 px-8 focus:outline-none hover:bg-black hover:text-white rounded text-lg" type="button" id="submitCon2" name="btnJoin" value="Join" target="_blank"> Sign Up for
+                      Updates</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+  </section>
+
+  <!-- REAL FOOTER (ALWAYS VISIBLE) -->
+  <footer class="bg-[#8C1D40] text-white relative z-10">
+    <div class="py-8 px-6 text-center space-y-3 cursor-pointer">
+      <p class="text-sm opacity-90">© 2025 Diversity Pilots</p>
+
+      <div class="flex justify-center gap-6 text-sm">
+        <a class="hover:underline" href="#">Privacy Policy</a>
+        <a class="hover:underline" href="#">Terms and Conditions</a>
+        <a class="hover:underline" href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
