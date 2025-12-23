@@ -219,8 +219,12 @@
     <script src="../../scripts/main.js"></script>
     <script>
         // Load navbar and footer - paths are relative to components folder
-        loadComponent("navbar", "../navbar.html");
-        loadComponent("footer", "../footer.html");
+        document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function() {
+            loadComponent("navbar", "../navbar.html");
+            loadComponent("footer", "../footer.html");
+        });
+        });
     </script>
 </body>
 </html>

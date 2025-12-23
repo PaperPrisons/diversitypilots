@@ -1,18 +1,31 @@
 // scripts/main.js
 
 async function loadComponent(id, file) {
-    const res = await fetch(file);
-    const html = await res.text();
-    const el = document.getElementById(id);
+    try {
+        const el = document.getElementById(id);
+        if (!el) {
+            console.warn(`Element with id "${id}" not found`);
+            return;
+        }
 
-    if (!el) return;
-    el.innerHTML = html;
+        // Try to fetch the component
+        const res = await fetch(file);
+        if (!res.ok) {
+            throw new Error(`Failed to load ${file}: ${res.status} ${res.statusText}`);
+        }
+        
+        const html = await res.text();
+        el.innerHTML = html;
 
-    // Initialize components after they are injected
-    if (id === "navbar") {
-        initNavbar();
-    } else if (id === "blog") {
-        initBlogPagination();
+        // Initialize components after they are injected
+        if (id === "navbar") {
+            initNavbar();
+        } else if (id === "blog") {
+            initBlogPagination();
+        }
+    } catch (error) {
+        console.error(`Error loading component ${id} from ${file}:`, error);
+        // Don't break the page if a component fails to load
     }
 }
 
@@ -28,17 +41,29 @@ function initNavbar() {
     
     // Fix navbar links based on current page location
     const currentPath = window.location.pathname;
-    const isBlogDetails = currentPath.includes('/components/blogdetails/');
-    const isComponents = currentPath.includes('/components/') && !isBlogDetails;
     
-    // Calculate base path
+    // Remove GitHub Pages base path if present (e.g., /diversitypilots/)
+    const pathParts = currentPath.split('/').filter(p => p);
+    const repoName = pathParts[0]; // First part might be repo name
+    
+    // Check if we're in blogdetails
+    const blogDetailsIndex = pathParts.indexOf('components');
+    const isBlogDetails = blogDetailsIndex !== -1 && pathParts[blogDetailsIndex + 1] === 'blogdetails';
+    const isComponents = pathParts.includes('components') && !isBlogDetails;
+    
+    // Calculate base path relative to root
     let basePath = '';
     if (isBlogDetails) {
         basePath = '../../';
     } else if (isComponents) {
         basePath = '../';
     } else {
-        basePath = './';
+        // For root pages, check if we need to account for repo name
+        if (repoName && repoName !== 'index.html' && !repoName.endsWith('.html')) {
+            basePath = './';
+        } else {
+            basePath = './';
+        }
     }
     
     // Update all navbar links
@@ -166,7 +191,17 @@ function initBlogPagination() {
     showPage(1);
 }
 
-// Load components (all from JS, no inline script needed in HTML)
-loadComponent("navbar", "./components/navbar.html");
-loadComponent("blog", "./components/blogsection.html");
-loadComponent("footer", "./components/footer.html");
+// Load components only if we're on a page that needs them
+// This prevents errors on pages that load components manually
+document.addEventListener('DOMContentLoaded', function() {
+    // Only auto-load if the elements exist and haven't been loaded yet
+    if (document.getElementById("navbar") && !document.getElementById("navbar").innerHTML.trim()) {
+        loadComponent("navbar", "./components/navbar.html");
+    }
+    if (document.getElementById("blog") && !document.getElementById("blog").innerHTML.trim()) {
+        loadComponent("blog", "./components/blogsection.html");
+    }
+    if (document.getElementById("footer") && !document.getElementById("footer").innerHTML.trim()) {
+        loadComponent("footer", "./components/footer.html");
+    }
+});
