@@ -1,12 +1,27 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-PWDJPRS");
+    </script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" />
     <link rel="icon" type="image/png" href="images/favicon.png" />
-    <title>Diversity</title>
-    <link rel="stylesheet" href="./dist/output.css" />
+    <title>Overview</title>
+    <link rel="stylesheet" href="../css/pp.css" />
+    <link rel="stylesheet" href="../css/banner.css" />
+
     <style>
       #quoteDiv {
         position: relative;
@@ -477,15 +492,16 @@
   </head>
   <body>
     <!--#include file="includes/header.html"-->
+    <!--#include file="includes/banner.html"-->
     <article class="container mx-auto py-12 px-4" itemid="#" i>
       <div class="w-full md:w-2/3 mx-auto text-center mb-12">
-        <!-- <h1
+        <h1
           id="diaryTitle"
           class="sm:text-4xl text-3xl mb-4 font-medium text-gray-800 leading-tight"
           itemprop="headline"
           title="Paper Prisons Story">
           Paper Prisons Diary
-        </h1> -->
+        </h1>
         <div class="btn-container">
           <label class="switch btn-color-mode-switch" for="color_mode">
             <input
@@ -499,13 +515,13 @@
               data-off="Impact of Having a Record"></span>
           </label>
         </div>
-        <!-- <p id="description" class="mt-4 text-black text-lg sm:text-md">
+        <p id="description" class="mt-4 text-black text-lg sm:text-md">
           We asked people with clearable criminal records how having a criminal
           record has impacted their lives.
         </p>
         <p class="mt-4 text-black text-lg sm:text-md">
           Here is what they said:
-        </p> -->
+        </p>
       </div>
       <div id="quoteDiv" class="mx-auto">
         <div id="blackDiv"></div>
@@ -520,20 +536,20 @@
       <!--<p>These experimental testimonies are shown for demonstration purposes only</p>-->
       <!--<p>Please contact ju@paperprisons.org with your feedback.</p>-->
       <!--</div>-->
-      <!-- <div class="w-full md:w-2/3 mx-auto text-center mb-12">
+      <div class="w-full md:w-2/3 mx-auto text-center mb-12">
         <p id="subscribeText" class="mt-4 text-black text-lg sm:text-md italic">
           These are some of the nearly 1,000 responses we got to this question,
           as well as many others, all of the subject of a Paper Prisons paper.
           Subscribe below for updates.
-        </p> -->
+        </p>
         <!-- <p class="mt-4 text-black text-lg sm:text-md italic">
           This tool was created by Navid Shaghagi, Ju Park, Colleen Chien, and
           student assistants. It is maintained by Max Calcoen.
         </p> -->
-        <!-- <p class="mt-4 text-black text-lg sm:text-md italic">
+        <p class="mt-4 text-black text-lg sm:text-md italic">
           To learn more or to build your own "Diary" tool
           <a href="https://github.com/PaperPrisons/diary-tool">click here</a>
-        </p> -->
+        </p>
       </div>
     </article>
 
