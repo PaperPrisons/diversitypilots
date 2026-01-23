@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" />
     <link rel="icon" type="image/png" href="images/favicon.png" />
-    <title>Diary</title>
+    <title>Diversity</title>
     <link rel="stylesheet" href="./dist/output.css" />
     <style>
       #quoteDiv {
@@ -417,15 +417,15 @@
           },
         }
       );
-      // function showNext(index, pList) {
-      //   pList[index].classList.add("visible");
-      //   setTimeout(() => {
-      //     pList[index].classList.remove("visible");
-      //     if (!paused) index++;
-      //     showNext(index % pList.length, pList);
-      //   }, 10000);
-      // }
-    </script> 
+      function showNext(index, pList) {
+        pList[index].classList.add("visible");
+        setTimeout(() => {
+          pList[index].classList.remove("visible");
+          if (!paused) index++;
+          showNext(index % pList.length, pList);
+        }, 10000);
+      }
+    </script>
 
     <script>
       Papa.parse(
@@ -475,22 +475,17 @@
       }
     </script>
   </head>
-  <body class="bg-white text-gray-900">
-
+  <body>
     <!--#include file="includes/header.html"-->
-    
-    <!-- NAVBAR -->
-    <div id="navbar"></div>
-    
     <article class="container mx-auto py-12 px-4" itemid="#" i>
       <div class="w-full md:w-2/3 mx-auto text-center mb-12">
-        <h1
+        <!-- <h1
           id="diaryTitle"
           class="sm:text-4xl text-3xl mb-4 font-medium text-gray-800 leading-tight"
           itemprop="headline"
           title="Paper Prisons Story">
           Paper Prisons Diary
-        </h1>
+        </h1> -->
         <div class="btn-container">
           <label class="switch btn-color-mode-switch" for="color_mode">
             <input
@@ -525,8 +520,8 @@
       <!--<p>These experimental testimonies are shown for demonstration purposes only</p>-->
       <!--<p>Please contact ju@paperprisons.org with your feedback.</p>-->
       <!--</div>-->
-      <div class="w-full md:w-2/3 mx-auto text-center mb-12">
-        <!-- <p id="subscribeText" class="mt-4 text-black text-lg sm:text-md italic">
+      <!-- <div class="w-full md:w-2/3 mx-auto text-center mb-12">
+        <p id="subscribeText" class="mt-4 text-black text-lg sm:text-md italic">
           These are some of the nearly 1,000 responses we got to this question,
           as well as many others, all of the subject of a Paper Prisons paper.
           Subscribe below for updates.
@@ -548,12 +543,7 @@
       style="padding: 0"
       class="text-gray-700 body-font relative showContact">
       <!--#include file="includes/contact.html"-->
-      
       <!--#include file="includes/footer.html"-->
-      
-      <!-- FOOTER -->
-      <div id="footer"></div>
-    
     </section>
 
     <script type="text/javascript">
