@@ -330,18 +330,18 @@
       integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
       crossorigin="anonymous"></script>
 
-    <script>
+    <!-- <script>
       $(document).ready(function () {
         const urlParams = new URLSearchParams(window.location.search);
         const isRja = urlParams.get('source') === 'rja' || window.location.hostname === 'rja.paperprisons.org';
 
-        // if (isRja) {
-        //   $(".btn-container").hide();
-        //   $("#diaryTitle").text("Paper Prisons RJA Diary");
-        //   $("#description").text("We asked people what the RJA means to them and here is what they said:");
-        //   $("#subscribeText").hide();
-        //   $("#diaryLink").text("https://paperprisons.org/diary.html");
-        // }
+        if (isRja) {
+          $(".btn-container").hide();
+          $("#diaryTitle").text("Paper Prisons RJA Diary");
+          $("#description").text("We asked people what the RJA means to them and here is what they said:");
+          $("#subscribeText").hide();
+          $("#diaryLink").text("https://paperprisons.org/diary.html");
+        }
 
         $("#color_mode").on("change", function () {
           colorModePreview(this);
@@ -425,7 +425,7 @@
           showNext(index % pList.length, pList);
         }, 10000);
       }
-    </script>
+    </script> -->
 
     <script>
       Papa.parse(
