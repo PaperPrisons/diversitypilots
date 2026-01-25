@@ -361,11 +361,12 @@
 
     <script
       type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
+      src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js">	
+	</script>
 
      <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const isRja = urlParams.get('source') === 'rja' || window.location.hostname === 'rja.paperprisons.org';
+      // const urlParams = new URLSearchParams(window.location.search);
+      // const isRja = urlParams.get('source') === 'rja' || window.location.hostname === 'rja.paperprisons.org';
 
       Papa.parse(
         isRja 
@@ -500,7 +501,7 @@
               type="checkbox"
               name="color_mode"
               id="color_mode"
-              value="1" />
+              value="0" />
             <span
               class="btn-color-mode-switch-inner"
               data-on="Impact of Expungement"
@@ -521,7 +522,7 @@
         <div id="pause">
           <p type="button" name="button" onclick="handlePause()">Pause</p>
         </div>
-        <img id="bottom" src="images/Logo/DPI.png" alt="@Diversity Pilots" />
+        <img id="bottom" src="images/logos/DPI.png" alt="@Diversity Pilots" />
         <span id="bottom2">https://diversitypilots.org/diary.html</span>
       </div>
       <!--<div class="w-full md:w-2/3 mx-auto text-center mb-12" style="margin-top: 64px">-->
