@@ -415,7 +415,7 @@
 
     <script>
       Papa.parse(
-        "https://docs.google.com/spreadsheets/d/1Y9NCo5-7GzVH4r6dshxzhDegMuDcGIdrMiEyga0yDRQ/pub?output=csv",
+        "https://docs.google.com/spreadsheets/d/1bBsLNCQtcj0b8Iubaex-LjTeFMtP0KIv73HD37YIVuI/pub?output=csv",
         {
           download: true,
           header: true,
@@ -429,19 +429,20 @@
               let pElement = document.createElement("p");
               pElement.classList.add("bQuote");
               pElement.innerHTML =
-                quotesData[i].quote +
+                "<strong>"quotesData[i].question + "</strong><br/>" +
+				quotesData[i].quote +
                 "<br><br>" +
                 "- <span class='userinfo'>" +
                 quotesData[i].name.trim(); //+ ", " + quotesData[i].ethnicity + ", charged " + quotesData[i].conviction_years_ago + " years ago</span>";
-              if (quotesData[i].ethnicity.trim()) {
-                pElement.innerHTML += ", " + quotesData[i].ethnicity.trim();
+              if (quotesData[i].info.trim()) {
+                pElement.innerHTML += ", " + quotesData[i].infor.trim();
               }
-              if (quotesData[i].conviction_years_ago.trim()) {
-                pElement.innerHTML +=
-                  ", convicted " +
-                  quotesData[i].conviction_years_ago.trim() +
-                  " years ago";
-              }
+              // if (quotesData[i].conviction_years_ago.trim()) {
+              //   pElement.innerHTML +=
+              //     ", convicted " +
+              //     quotesData[i].conviction_years_ago.trim() +
+              //     " years ago";
+              // }
               pElement.innerHTM += "</span>";
               // <br/><img id='ppLogo' src='images/LogoWhiteWords.png' alt='@PaperPrisons'/>";
               //console.log(quoteElement);
