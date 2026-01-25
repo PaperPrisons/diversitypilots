@@ -30,14 +30,14 @@
         /*0 100px 80px rgba(0, 0, 0, 0.12);*/
       }
 
-      #blackDiv {
+      /* #blackDiv {
         background-color: #2e2e2e;
         width: 100%;
         min-height: 600px;
         text-align: center;
         vertical-align: middle;
         display: flex;
-      }
+      } */
 
       #whiteDiv {
         background-color: #fff;
@@ -45,7 +45,8 @@
         min-height: 600px;
         text-align: center;
         vertical-align: middle;
-        display: none;
+        /* display: none; */
+		display: flex;
       }
 
       .quote {
@@ -133,27 +134,27 @@
 
       /*switch styles*/
 
-      div.btn-container {
+      /* div.btn-container {
         display: table-cell;
         vertical-align: middle;
         text-align: center;
         width: 10%;
         margin: auto;
-      }
+      } */
 
-      label {
+      /* label {
         font-size: 13px;
-        /*color: #424242;*/
+        / *color: #424242;* /
         font-weight: 500;
-      }
+      } */
 
-      .btn-color-mode-switch {
+      /* .btn-color-mode-switch {
         display: inline-block;
         margin: 0px;
         position: relative;
-      }
+      } */
 
-      .btn-color-mode-switch > label.btn-color-mode-switch-inner {
+      /* .btn-color-mode-switch > label.btn-color-mode-switch-inner {
         margin: 0px;
         width: 200px;
         height: 50px;
@@ -163,24 +164,24 @@
         overflow: hidden;
         position: relative;
         transition: all 0.3s ease;
-        /*box-shadow: 0px 0px 8px 0px rgba(17, 17, 17, 0.34) inset;*/
+        / *box-shadow: 0px 0px 8px 0px rgba(17, 17, 17, 0.34) inset;* /
         display: block;
-      }
+      } */
 
-      .btn-color-mode-switch > label.btn-color-mode-switch-inner:before {
+      /* .btn-color-mode-switch > label.btn-color-mode-switch-inner:before {
         content: attr(data-on);
         position: absolute;
         font-size: 12px;
         font-weight: 500;
         top: 7px;
         left: 95px;
-      }
+      } */
 
-      .btn-color-mode-switch > label.btn-color-mode-switch-inner:after {
+      /* .btn-color-mode-switch > label.btn-color-mode-switch-inner:after {
         content: attr(data-off);
         width: 105px;
         height: 45px;
-        background: #6458ab; /*#9c3fc6;*/
+        background: #6458ab; / *#9c3fc6;* /
         border-radius: 26px;
         position: absolute;
         left: 2px;
@@ -189,7 +190,7 @@
         transition: all 0.3s ease;
         box-shadow: 0px 0px 6px -2px #111;
         padding: 5px 0px;
-      }
+      } */
 
       /*.btn-color-mode-switch > .alert{
                 display: none;
@@ -198,7 +199,7 @@
                 color: #fff;
             }*/
 
-      .btn-color-mode-switch input[type="checkbox"] {
+      /* .btn-color-mode-switch input[type="checkbox"] {
         cursor: pointer;
         width: 50px;
         height: 25px;
@@ -207,9 +208,11 @@
         top: 0;
         z-index: 1;
         margin: 0px;
-      }
+      } */
 
-      /* .btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner{
+      /* 
+		Older:
+		    .btn-color-mode-switch input[type="checkbox"]:checked + label.btn-color-mode-switch-inner{
                 background: #E0E0E0;
                 color: black;
             }
@@ -225,9 +228,10 @@
                 content: attr(data-off);
                 right: 105;
                 left: 5px;
-            }*/
+            }
+		*/
 
-      .btn-color-mode-switch
+      /* .btn-color-mode-switch
         input[type="checkbox"]:checked
         + label.btn-color-mode-switch-inner,
       .btn-color-mode-switch
@@ -235,26 +239,26 @@
         + span.btn-color-mode-switch-inner {
         background: #e0e0e0;
         color: black;
-      }
-      .btn-color-mode-switch
+      } */
+      /* .btn-color-mode-switch
         input[type="checkbox"]:checked
         + label.btn-color-mode-switch-inner:after {
         content: attr(data-on);
         left: 94px;
         background: #6458ab;
         color: #fff;
-      }
+      } */
 
-      .btn-color-mode-switch
+      /* .btn-color-mode-switch
         input[type="checkbox"]:checked
         + span.btn-color-mode-switch-inner:after {
         content: attr(data-on);
         left: 94px;
         background: #6458ab;
         color: #fff;
-      }
+      } */
 
-      .btn-color-mode-switch
+      /* .btn-color-mode-switch
         input[type="checkbox"]:checked
         + label.btn-color-mode-switch-inner:before,
       .btn-color-mode-switch
@@ -263,18 +267,18 @@
         content: attr(data-off);
         right: 105;
         left: 5px;
-      }
+      } */
 
-      .btn-color-mode-switch
+      /* .btn-color-mode-switch
         input[type="checkbox"]:checked
         + label.btn-color-mode-switch-inner {
-        /*background: #66BB6A; */
-        /*color: #fff;*/
-      }
+        / *background: #66BB6A; * /
+        / *color: #fff;* /
+      } */
 
-      .btn-color-mode-switch input[type="checkbox"]:checked ~ .alert {
+      /* .btn-color-mode-switch input[type="checkbox"]:checked ~ .alert {
         display: block;
-      }
+      } */
       div#pause {
         position: absolute;
         bottom: 10%;
@@ -288,7 +292,7 @@
         cursor: pointer;
       }
 
-      .btn-color-mode-switch > span.btn-color-mode-switch-inner {
+      /* .btn-color-mode-switch > span.btn-color-mode-switch-inner {
         margin: 0px;
         width: 200px;
         height: 50px;
@@ -299,18 +303,18 @@
         position: relative;
         transition: all 0.3s ease;
         display: block;
-      }
+      } */
 
-      .btn-color-mode-switch > span.btn-color-mode-switch-inner:before {
+      /* .btn-color-mode-switch > span.btn-color-mode-switch-inner:before {
         content: attr(data-on);
         position: absolute;
         font-size: 12px;
         font-weight: 500;
         top: 7px;
         left: 95px;
-      }
+      } */
 
-      .btn-color-mode-switch > span.btn-color-mode-switch-inner:after {
+      /* .btn-color-mode-switch > span.btn-color-mode-switch-inner:after {
         content: attr(data-off);
         width: 105px;
         height: 45px;
@@ -323,7 +327,7 @@
         transition: all 0.3s ease;
         box-shadow: 0px 0px 6px -2px #111;
         padding: 5px 0px;
-      }
+      } */
     </style>
 
     <script
@@ -334,29 +338,29 @@
     <script>
       let paused = false;
 
-      $(document).ready(function () {
-        $("#color_mode").on("change", function () {
-          colorModePreview(this);
-        });
-      });
+      // $(document).ready(function () {
+      //   $("#color_mode").on("change", function () {
+      //     colorModePreview(this);
+      //   });
+      // });
 
-      function colorModePreview(ele) {
-        if ($(ele).prop("checked") == true) {
-          document.getElementById("description").innerHTML =
-            "We asked people how getting an expungement has changed their lives.";
-          document.getElementById("blackDiv").style.display = "none";
-          document.getElementById("whiteDiv").style.display = "flex";
-          document.getElementById("bottom").src = "images/logo.png";
-          document.getElementById("bottom2").style.color = "black";
-        } else if ($(ele).prop("checked") == false) {
-          document.getElementById("description").innerHTML =
-            "We asked people stuck in Paper Prisons how having a record has impacted their lives.";
-          document.getElementById("blackDiv").style.display = "flex";
-          document.getElementById("whiteDiv").style.display = "none";
-          document.getElementById("bottom").src = "images/LogoWhiteWords.png";
-          document.getElementById("bottom2").style.color = "white";
-        }
-      }
+      // function colorModePreview(ele) {
+      //   if ($(ele).prop("checked") == true) {
+      //     document.getElementById("description").innerHTML =
+      //       "We asked people how getting an expungement has changed their lives.";
+      //     document.getElementById("blackDiv").style.display = "none";
+      //     document.getElementById("whiteDiv").style.display = "flex";
+      //     document.getElementById("bottom").src = "images/logos/DPI.png";
+      //     document.getElementById("bottom2").style.color = "black";
+      //   } else if ($(ele).prop("checked") == false) {
+      //     document.getElementById("description").innerHTML =
+      //       "We asked people stuck in Paper Prisons how having a record has impacted their lives.";
+      //     document.getElementById("blackDiv").style.display = "flex";
+      //     document.getElementById("whiteDiv").style.display = "none";
+      //     document.getElementById("bottom").src = "images/logos/DPI.png";
+      //     document.getElementById("bottom2").style.color = "white";
+      //   }
+      // }
     </script> 
 
     <script
@@ -364,14 +368,9 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js">	
 	</script>
 
-     <script>
-      // const urlParams = new URLSearchParams(window.location.search);
-      // const isRja = urlParams.get('source') === 'rja' || window.location.hostname === 'rja.paperprisons.org';
+     <!-- <script>
 
       Papa.parse(
-        // isRja 
-          // ? "https://docs.google.com/spreadsheets/d/e/2PACX-1vT1VWccDMphZgAKchZDFmkud5vxCICcM34ZbyiUKco98MOyR3aZVzQFZRQNV9ywD4XDowMfdZ_r52D8/pub?gid=0&single=true&output=csv"
-          // : 
 		  "https://docs.google.com/spreadsheets/d/1huSXlLkqCvake3cRx468G1Soi32RAc5fL4DBL8YA7Us/pub?output=csv",
         {
           download: true,
@@ -412,7 +411,7 @@
           showNext(index % pList.length, pList);
         }, 10000);
       }
-    </script> 
+    </script>  -->
 
     <script>
       Papa.parse(
@@ -496,7 +495,7 @@
           title="Paper Prisons Story">
           Paper Prisons Diary
         </h1> -->
-        <div class="btn-container">
+        <!-- <div class="btn-container">
           <label class="switch btn-color-mode-switch" for="color_mode">
             <input
               type="checkbox"
@@ -508,17 +507,17 @@
               data-on="Impact of Expungement"
               data-off="Impact of Having a Record"></span>
           </label>
-        </div>
-        <p id="description" class="mt-4 text-black text-lg sm:text-md">
-          <!-- We asked people with clearable criminal records how having a criminal 
-          record has impacted their lives.-->
-        </p>
+        </div> -->
+        <!-- <p id="description" class="mt-4 text-black text-lg sm:text-md">
+           We asked people with clearable criminal records how having a criminal 
+          record has impacted their lives.
+        </p> -->
         <!-- <p class="mt-4 text-black text-lg sm:text-md">
           Here is what they said:
         </p> -->
       </div>
       <div id="quoteDiv" class="mx-auto">
-        <div id="blackDiv"></div>
+        <!-- <div id="blackDiv"></div> -->
         <div id="whiteDiv"></div>
         <div id="pause">
           <p type="button" name="button" onclick="handlePause()">Pause</p>
