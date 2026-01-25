@@ -332,22 +332,6 @@
       crossorigin="anonymous"></script>
 
     <script>
-      // $(document).ready(function () {
-        // const urlParams = new URLSearchParams(window.location.search);
-        // const isRja = urlParams.get('source') === 'rja' || window.location.hostname === 'rja.paperprisons.org';
-
-        // if (isRja) {
-        //   $(".btn-container").hide();
-        //   $("#diaryTitle").text("Paper Prisons RJA Diary");
-        //   $("#description").text("We asked people what the RJA means to them and here is what they said:");
-        //   $("#subscribeText").hide();
-        //   $("#diaryLink").text("https://paperprisons.org/diary.html");
-        // }
-
-        // $("#color_mode").on("change", function () {
-        //   colorModePreview(this);
-        // });
-      // });
       let paused = false;
 
       $(document).ready(function () {
@@ -477,8 +461,30 @@
     </script>
   </head>
   <body>
+    <div class="elementor-widget-container">
+		  <nav class="elementor-nav-menu--main elementor-nav-menu__container elementor-nav-menu--layout-horizontal e--pointer-text e--animation-none">
+				<ul id="menu-1-e1acbed" class="elementor-nav-menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-1128 current_page_item menu-item-1520"><a href="https://diversitypilots.org/" aria-current="page" class="elementor-item elementor-item-active">Home</a></li>
+          <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1522"><a href="https://diversitypilots.org/team/" class="elementor-item">Team</a></li>
+          <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1523"><a href="https://diversitypilots.org/diary/" class="elementor-item">Diary</a></li>
+          <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1521"><a href="https://diversitypilots.org/blog/" class="elementor-item">Blog</a></li>
+          <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1845"><a href="https://diversitypilots.org/innovator-diversity-pilots-conference/" class="elementor-item">Conference</a></li>
+        </ul>
+      </nav>
+			<div class="elementor-menu-toggle" role="button" tabindex="0" aria-label="Menu Toggle" aria-expanded="false">
+			  <i aria-hidden="true" role="presentation" class="elementor-menu-toggle__icon--open eicon-menu-bar"></i>
+        <i aria-hidden="true" role="presentation" class="elementor-menu-toggle__icon--close eicon-close"></i>			
+        <span class="elementor-screen-only">Menu</span>
+		  </div>
+			<nav class="elementor-nav-menu--dropdown elementor-nav-menu__container" aria-hidden="true">
+				<ul id="menu-2-e1acbed" class="elementor-nav-menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-1128 current_page_item menu-item-1520"><a href="https://diversitypilots.org/" aria-current="page" class="elementor-item elementor-item-active" tabindex="-1">Home</a></li>
+          <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1522"><a href="https://diversitypilots.org/team/" class="elementor-item" tabindex="-1">Team</a></li>
+          <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1523"><a href="https://diversitypilots.org/diary/" class="elementor-item" tabindex="-1">Diary</a></li>
+          <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1521"><a href="https://diversitypilots.org/blog/" class="elementor-item" tabindex="-1">Blog</a></li>
+          <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1845"><a href="https://diversitypilots.org/innovator-diversity-pilots-conference/" class="elementor-item" tabindex="-1">Conference</a></li>
+        </ul>
+      </nav>
+	  </div>
     <!--#include file="includes/header.html"-->
-    <!--#include file="includes/banner.html"-->
     <article class="container mx-auto py-12 px-4" itemid="#" i>
       <div class="w-full md:w-2/3 mx-auto text-center mb-12">
         <h1
