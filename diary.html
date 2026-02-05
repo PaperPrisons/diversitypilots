@@ -3,24 +3,292 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
     <title>Diary - Diversity Pilots Initiative</title>
     <link rel="stylesheet" href="./dist/output.css" />
+    <style>
+		body{
+			min-height: 700px;
+		}
+      #quoteDiv {
+		position: relative;
+        /*background-color: #2e2e2e;*/
+        width: 90%;
+        min-height: 550px;
+        text-align: center;
+        vertical-align: middle;
+        display: flex;
+        border-top: 2.25px solid rgb(0 0 0 / 3%);
+        box-shadow: 0 2.8px 2.2px rgb(0 0 0 / 3%), 0 6.7px 5.3px rgb(0 0 0 / 5%),
+          0 12.5px 10px rgb(0 0 0 / 6%), 0 22.3px 17.9px rgb(0 0 0 / 7%),
+          0 41.8px 33.4px rgb(0 0 0 / 9%), 0 10px 10px rgb(0 0 0 / 12%);
+        /*box-shadow:*/
+        /*0 2.8px 2.2px rgba(0, 0, 0, 0.034),*/
+        /*0 6.7px 5.3px rgba(0, 0, 0, 0.048),*/
+        /*0 12.5px 10px rgba(0, 0, 0, 0.06),*/
+        /*0 22.3px 17.9px rgba(0, 0, 0, 0.072),*/
+        /*0 41.8px 33.4px rgba(0, 0, 0, 0.086),*/
+        /*0 100px 80px rgba(0, 0, 0, 0.12);*/
+      }
+
+      #whiteDiv {
+        background-color: #fff;
+        width: 100%;
+        min-height: 600px;
+        text-align: center;
+        /* vertical-align: middle; */
+        /* display: none; */
+		display: flex;
+      }
+
+      .quote {
+        opacity: 0;
+        display: none;
+        margin: auto;
+        width: 80%;
+        font-size: 24px;
+        color: #fafafa;
+      }
+
+      .bQuote {
+        opacity: 0;
+        display: none;
+        margin: auto;
+        width: 80%;
+        font-size: 24px;
+        color: #2e2e2e;
+      }
+
+      .userinfo {
+        font-size: 24px;
+      }
+
+      .visible {
+        display: inline-block;
+        -webkit-animation: fadein ease-in 10s normal forwards; /* Safari, Chrome and Opera > 12.1 */
+        -moz-animation: fadein ease-in 10s normal forwards; /* Firefox < 16 */
+        -ms-animation: fadein ease-in 10s normal forwards; /* Internet Explorer */
+        -o-animation: fadein ease-in 10s normal forwards; /* Opera < 12.1 */
+        animation: fadein ease-in 10s normal forwards;
+      }
+
+      @keyframes fadein {
+        0% {
+          opacity: 0;
+        }
+        50%,
+        100% {
+          opacity: 1;
+        }
+      }
+
+      div#quoteDiv #ppLogo {
+        float: right;
+        width: 7%;
+        position: relative;
+      }
+		
+      #bottom {
+        position: absolute;
+        bottom: 10%;
+        right: 10%;
+        /* height: 15%; */
+		width: 20%;
+		opacity: 50%;
+      }
+		
+      #bottom2 {
+        position: absolute;
+        bottom: 5%;
+        right: 10%;
+        /* color: white; */
+        font-size: 12;
+      }
+
+      @media screen and (max-width: 845px) {
+        #blackDiv,
+        #whiteDiv {
+          vertical-align: top;
+        }
+        .quote {
+          font-size: 14px;
+        }
+
+        .bQuote {
+          font-size: 14px;
+        }
+        .userinfo {
+          font-size: 14px;
+        }
+        #bottom {
+          /* height: 8%; */
+        }
+        #bottom2 {
+          font-size: 8px;
+        }
+      }
+      div#pause {
+        position: absolute;
+        bottom: 10%;
+        left: 10%;
+        background-color: grey;
+        border-radius: 25%;
+        width: 4rem;
+        height: 2rem;
+      }
+      div#pause p:hover {
+        cursor: pointer;
+      }
+    </style>
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"></script>
+
+    <script>
+      let paused = false;
+    </script> 
+
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js">	
+	</script>
+
+    <script>
+      Papa.parse(
+		"https://docs.google.com/spreadsheets/d/e/2PACX-1vSEP1wuLboZgvqTchbpjlEB4OVM3NPslMiRLvXCaUuz-Ic94EQJda5GUeFOps-jlU4Auj_sYgtYsp-N/pub?output=csv",
+        {
+          download: true,
+          header: true,
+          complete: function showInfo(results) {
+            var quotesData = results.data;
+             // alert('Successfully processed!');
+             // console.log(quotesData);
+            const quoteElement = document.getElementById("whiteDiv");
+            var i;
+            for (i = 0; i < quotesData.length; i++) {
+              let pElement = document.createElement("p");
+              pElement.classList.add("bQuote");
+              pElement.innerHTML =
+                "<strong>" + quotesData[i].question + "</strong><br/>" +
+				quotesData[i].quote +
+                "<br><br>" +
+                "- <span class='userinfo'>" +
+                quotesData[i].name.trim(); //+ ", " + quotesData[i].ethnicity + ", charged " + quotesData[i].conviction_years_ago + " years ago</span>";
+              if (quotesData[i].info.trim()) {
+                pElement.innerHTML += ", " + quotesData[i].info.trim();
+              }
+              // if (quotesData[i].conviction_years_ago.trim()) {
+              //   pElement.innerHTML +=
+              //     ", convicted " +
+              //     quotesData[i].conviction_years_ago.trim() +
+              //     " years ago";
+              // }
+              pElement.innerHTM += "</span>";
+              // <br/><img id='ppLogo' src='images/LogoWhiteWords.png' alt='@PaperPrisons'/>";
+              //console.log(quoteElement);
+              quoteElement.appendChild(pElement);
+            }
+            showNext(0, document.querySelectorAll(".bQuote"));
+          },
+        }
+      );
+      function showNext(index, pList) {
+        pList[index].classList.add("visible");
+        setTimeout(() => {
+          pList[index].classList.remove("visible");
+          if (!paused) index++;
+          showNext(index % pList.length, pList);
+        }, 10000);
+      }
+    </script>
 </head>
 <body class="bg-white text-gray-900">
     <!-- NAVBAR -->
     <div id="navbar"></div>
 
     <!-- DIARY CONTENT -->
-    <div id="diary"></div>
+    <!-- <div id="diary"></div> -->
+    <article class="container mx-auto py-12 px-4" itemid="#" i>
+      <div class="w-full md:w-2/3 mx-auto text-center mb-12">
+        <!-- <h1
+          id="diaryTitle"
+          class="sm:text-4xl text-3xl mb-4 font-medium text-gray-800 leading-tight"
+          itemprop="headline"
+          title="Paper Prisons Story">
+          Paper Prisons Diary
+        </h1> -->
+        <!-- <div class="btn-container">
+          <label class="switch btn-color-mode-switch" for="color_mode">
+            <input
+              type="checkbox"
+              name="color_mode"
+              id="color_mode"
+              value="1" />
+            <span
+              class="btn-color-mode-switch-inner"
+              data-on="Impact of Expungement"
+              data-off="Impact of Having a Record"></span>
+          </label>
+        </div> -->
+        <!-- <p id="description" class="mt-4 text-black text-lg sm:text-md">
+           We asked people with clearable criminal records how having a criminal 
+          record has impacted their lives.
+        </p> -->
+        <!-- <p class="mt-4 text-black text-lg sm:text-md">
+          Here is what they said:
+        </p> -->
+      </div>
+      <div id="quoteDiv" class="mx-auto">
+        <!-- <div id="blackDiv"></div> -->
+        <div id="whiteDiv"></div>
+        <div id="pause">
+          <p type="button" name="button" onclick="handlePause()">Pause</p>
+        </div>
+        <img id="bottom" src="images/logos/DPI.png" alt="@Diversity Pilots" />
+        <span id="bottom2">https://diversitypilots.org/diary.html</span>
+      </div>
+      <!--<div class="w-full md:w-2/3 mx-auto text-center mb-12" style="margin-top: 64px">-->
+      <!--<p>These experimental testimonies are shown for demonstration purposes only</p>-->
+      <!--<p>Please contact ju@paperprisons.org with your feedback.</p>-->
+      <!--</div>-->
+      <!-- <div class="w-full md:w-2/3 mx-auto text-center mb-12"> -->
+        <!-- <p id="subscribeText" class="mt-4 text-black text-lg sm:text-md italic">
+          These are some of the nearly 1,000 responses we got to this question,
+          as well as many others, all of the subject of a Paper Prisons paper.
+          Subscribe below for updates.
+        </p> -->
+        <!-- <p class="mt-4 text-black text-lg sm:text-md italic">
+          This tool was created by Navid Shaghagi, Ju Park, Colleen Chien, and
+          student assistants. It is maintained by Max Calcoen.
+        </p> -->
+        <!-- <p class="mt-4 text-black text-lg sm:text-md italic">
+          To learn more or to build your own "Diary" tool
+          <a href="https://github.com/PaperPrisons/diary-tool">click here</a>
+        </p> -->
+      <!-- </div> -->
+		<br/><br/>
+    </article>
 
     <!-- FOOTER -->
     <div id="footer"></div>
 
+    <script type="text/javascript">
+      function handlePause() {
+        paused = !paused;
+        let out = "Pause";
+        if (paused) {
+          out = "Play";
+        }
+        document.getElementById("pause").children[0].innerText = out;
+      }
+    </script>
     
     <script src="./scripts/main.js"></script>
-    <script>
+    <!-- <script>
         // Load diary content
         loadComponent("diary", "./components/diarysection.html");
-    </script>
+    </script> -->
 </body>
 </html>
