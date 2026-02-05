@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog - Diversity Pilots Initiative</title>
-    <link rel="stylesheet" href="./dist/output.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DPI Blog</title>
+  <link rel="stylesheet" href="./dist/output.css" />
 </head>
+
 <body class="bg-white text-gray-900">
-    <!-- NAVBAR -->
-    <div id="navbar"></div>
 
-    <!-- BLOG CONTENT -->
-    <div id="blog"></div>
+  <!-- NAVBAR -->
+  <div id="navbar"></div>
 
-    <!-- FOOTER -->
-    <div id="footer"></div>
+  <!-- BLOG -->
+  <div id="blog"></div>
 
-    <script src="./scripts/main.js"></script>
-    <script>
-        // Load blog content
-        loadComponent("blog", "./components/blogsection.html");
-    </script>
+  <!-- FOOTER -->
+  <div id="footer"></div>
+
+  <!-- Wix API code in wix-blog.js; main.js injects blog section then calls loadWixBlog() -->
+  <script src="./scripts/wix-blog.js"></script>
+  <script src="./scripts/main.js"></script>
+
 </body>
-</html> 
+</html>

@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@theme {
+  --color-customRed: #9E1B32;
+  --color-dpiRed: #8C1D40;
+}

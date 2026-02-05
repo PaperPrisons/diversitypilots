@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Dashboard - Diversity Pilots Initiative</title>
+  <link rel="stylesheet" href="../dist/output.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="bg-white text-gray-900">
+  <!-- NAVBAR -->
+  <div id="navbar"></div>
+
+  <!-- DASHBOARD -->
+  <section id="dashboardRoot" class="w-full bg-white py-10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center justify-between mb-6">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Blog Dashboard</h1>
+        <button id="signOutButton" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium px-4 py-2 rounded">Sign out</button>
+      </div>
+      <p class="text-gray-600 mb-8">For organization members to create and manage blog drafts. This scaffold uses client-side storage; wire to a backend for production.</p>
+
+      <!-- Create / Edit Form -->
+      <div class="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-10">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1" for="titleInput">Title</label>
+            <input id="titleInput" type="text" class="w-full rounded border-gray-300 focus:border-[#8C1D40] focus:ring-[#8C1D40]" placeholder="Post title" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1" for="slugInput">Slug (optional)</label>
+            <input id="slugInput" type="text" class="w-full rounded border-gray-300 focus:border-[#8C1D40] focus:ring-[#8C1D40]" placeholder="my-post-slug" />
+          </div>
+        </div>
+        <div class="mt-6">
+          <label class="block text-sm font-medium text-gray-700 mb-1" for="contentInput">Content (HTML)</label>
+          <textarea id="contentInput" rows="10" class="w-full rounded border-gray-300 focus:border-[#8C1D40] focus:ring-[#8C1D40]" placeholder="Write your HTML content here..."></textarea>
+        </div>
+        <div class="mt-6 grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1" for="tagsInput">Tags (comma-separated)</label>
+            <input id="tagsInput" type="text" class="w-full rounded border-gray-300 focus:border-[#8C1D40] focus:ring-[#8C1D40]" placeholder="innovation, patents" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1" for="imageInput">Cover image (optional)</label>
+            <input id="imageInput" type="file" accept="image/*" class="w-full text-sm" />
+            <p class="text-xs text-gray-500 mt-1">JPEG/PNG up to ~5MB recommended.</p>
+          </div>
+        </div>
+        <div class="mt-6 flex items-end">
+            <button id="submitButton" class="w-full md:w-auto bg-[#8C1D40] hover:bg-[#4A0E22] text-white font-semibold px-6 py-3 rounded">Save Draft</button>
+          </div>
+        </div>
+        <p id="formMessage" class="mt-4 text-sm"></p>
+      </div>
+
+      <!-- My Drafts -->
+      <div>
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">My Drafts</h2>
+        <div id="postsList" class="grid md:grid-cols-2 gap-6">
+          <!-- Items will be rendered by JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div id="footer"></div>
+
+  <script src="../scripts/main.js"></script>
+  <!-- Firebase SDKs (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-storage-compat.js"></script>
+  <script src="../scripts/firebase.js"></script>
+  <script src="../scripts/dashboard.js"></script>
+  <script>
+    // Load navbar and footer
+    document.addEventListener('DOMContentLoaded', function() {
+      loadComponent('navbar', '../components/navbar.html');
+      loadComponent('footer', '../components/footer.html');
+    });
+  </script>
+</body>
+</html>
