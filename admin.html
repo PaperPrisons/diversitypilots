@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - DPI Blog</title>
+    <link rel="stylesheet" href="./dist/output.css" />
+  </head>
+
+  <body class="bg-white text-gray-900">
+    <!-- NAVBAR -->
+    <div id="navbar"></div>
+
+    <!-- HERO -->
+    <section class="bg-[#8C1D40] text-white py-16">
+      <div class="max-w-5xl mx-auto px-6">
+        <h1 class="text-3xl md:text-4xl font-bold">Blog Admin</h1>
+        <p class="opacity-90 mt-2">Create, edit, and delete blog posts stored in Firebase Firestore.</p>
+      </div>
+    </section>
+
+    <main class="max-w-5xl mx-auto px-6 py-10 space-y-10">
+      <!-- AUTH -->
+      <section class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <h2 class="text-xl font-bold">Authentication</h2>
+            <p class="text-sm text-gray-600 mt-1" id="auth-status">Checking auth…</p>
+          </div>
+          <div class="flex gap-3">
+            <button
+              id="btn-logout"
+              class="hidden px-4 py-2 rounded bg-gray-900 text-white hover:bg-black transition"
+              type="button"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+
+        <form id="login-form" class="mt-6 grid md:grid-cols-3 gap-4">
+          <div class="md:col-span-1">
+            <label class="block text-sm font-semibold mb-1" for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#8C1D40] focus:border-transparent"
+              placeholder="admin@example.com"
+              required
+            />
+          </div>
+          <div class="md:col-span-1">
+            <label class="block text-sm font-semibold mb-1" for="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#8C1D40] focus:border-transparent"
+              placeholder="••••••••"
+              required
+            />
+          </div>
+          <div class="md:col-span-1 flex items-end">
+            <button
+              class="w-full px-4 py-2 rounded bg-[#8C1D40] text-white hover:bg-[#6d1630] transition"
+              type="submit"
+            >
+              Login
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- CREATE / EDIT -->
+      <section id="editor-section" class="hidden bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-bold">Create / Edit Post</h2>
+            <p class="text-sm text-gray-600 mt-1">
+              Saves to Firestore collection: <span class="font-mono">blogs</span>
+            </p>
+          </div>
+          <div class="flex gap-2">
+            <button
+              id="btn-clear"
+              class="px-4 py-2 rounded bg-gray-100 hover:bg-gray-200 transition"
+              type="button"
+            >
+              Clear
+            </button>
+          </div>
+        </div>
+
+        <form id="post-form" class="mt-6 grid md:grid-cols-2 gap-4">
+          <input id="doc-id" type="hidden" />
+
+          <div class="md:col-span-2">
+            <label class="block text-sm font-semibold mb-1" for="title">Title</label>
+            <input
+              id="title"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#8C1D40] focus:border-transparent"
+              placeholder="Blog title"
+              required
+            />
+          </div>
+
+          <div class="md:col-span-2">
+            <label class="block text-sm font-semibold mb-1" for="summary">Blog info / summary</label>
+            <textarea
+              id="summary"
+              rows="4"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#8C1D40] focus:border-transparent"
+              placeholder="Short description shown on the blog card (optional)"
+            ></textarea>
+          </div>
+
+          <div class="md:col-span-2">
+            <label class="block text-sm font-semibold mb-1" for="imageFile">Image Upload</label>
+            <div class="grid md:grid-cols-3 gap-3 items-end">
+              <div class="md:col-span-2">
+                <input id="imageFile" type="file" accept="image/*" class="w-full px-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-[#8C1D40] focus:border-transparent" />
+                <p class="text-xs text-gray-500 mt-1">Upload image from your computer</p>
+              </div>
+              <div class="md:col-span-1">
+                <button
+                  id="btn-upload"
+                  class="w-full px-4 py-2 rounded bg-gray-900 text-white hover:bg-black transition"
+                  type="button"
+                >
+                  Upload Image
+                </button>
+              </div>
+            </div>
+            <input id="image" type="hidden" />
+          </div>
+
+          <div class="md:col-span-2">
+            <h3 class="text-sm font-bold text-gray-900 mt-2">Optional social links</h3>
+            <p class="text-xs text-gray-500 mt-1">These will show as icons on the blog card (if provided).</p>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold mb-1" for="facebook">Facebook URL</label>
+            <input
+              id="facebook"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#8C1D40] focus:border-transparent"
+              placeholder="https://facebook.com/…"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold mb-1" for="linkedin">LinkedIn URL</label>
+            <input
+              id="linkedin"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#8C1D40] focus:border-transparent"
+              placeholder="https://linkedin.com/…"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold mb-1" for="otherLink">Other URL</label>
+            <input
+              id="otherLink"
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#8C1D40] focus:border-transparent"
+              placeholder="https://…"
+            />
+          </div>
+
+          <div class="md:col-span-2">
+            <div class="flex gap-3">
+              <button
+                class="px-5 py-2 rounded bg-[#8C1D40] text-white hover:bg-[#6d1630] transition"
+                type="submit"
+              >
+                Save Post
+              </button>
+              <button
+                id="btn-delete"
+                class="hidden px-5 py-2 rounded bg-red-600 text-white hover:bg-red-700 transition"
+                type="button"
+              >
+                Delete Post
+              </button>
+            </div>
+            <p class="text-sm mt-3" id="form-msg"></p>
+          </div>
+        </form>
+      </section>
+
+      <!-- LIST -->
+      <section id="list-section" class="hidden bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          <div>
+            <h2 class="text-xl font-bold">Posts</h2>
+            <p class="text-sm text-gray-600 mt-1">Click a post to edit.</p>
+          </div>
+          <button
+            id="btn-refresh"
+            class="px-4 py-2 rounded bg-gray-100 hover:bg-gray-200 transition"
+            type="button"
+          >
+            Refresh
+          </button>
+        </div>
+
+        <div class="mt-6 overflow-x-auto">
+          <table class="min-w-full text-sm">
+            <thead>
+              <tr class="text-left border-b">
+                <th class="py-2 pr-4">Title</th>
+                <th class="py-2 pr-4">Created</th>
+              </tr>
+            </thead>
+            <tbody id="posts-tbody">
+              <tr>
+                <td class="py-3 text-gray-500" colspan="4">Loading…</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- NOTE -->
+      <section class="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
+        <h3 class="font-bold">Important</h3>
+        <p class="text-sm text-yellow-900 mt-2">
+          This admin page requires Firestore <strong>write permissions</strong> for authenticated users. If saving fails,
+          check your Firestore rules and make sure the user is allowed to write to the <span class="font-mono">blogs</span>
+          collection.
+        </p>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <div id="footer"></div>
+
+    <script src="./scripts/main.js"></script>
+    <script type="module" src="./scripts/blog-admin.js"></script>
+  </body>
+</html>
+
+

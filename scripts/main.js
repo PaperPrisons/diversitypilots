@@ -1,31 +1,40 @@
 // scripts/main.js
 
 async function loadComponent(id, file) {
-    try {
-        const el = document.getElementById(id);
-        if (!el) {
-            console.warn(`Element with id "${id}" not found`);
-            return;
-        }
+    const res = await fetch(file);
+    if (!res.ok) throw new Error(`Failed to load ${file}: ${res.status}`);
+    const html = await res.text();
+    const el = document.getElementById(id);
 
-        // Try to fetch the component
-        const res = await fetch(file);
-        if (!res.ok) {
-            throw new Error(`Failed to load ${file}: ${res.status} ${res.statusText}`);
-        }
-        
-        const html = await res.text();
-        el.innerHTML = html;
+    if (!el) return;
+    el.innerHTML = html;
 
-        // Initialize components after they are injected
-        if (id === "navbar") {
-            initNavbar();
-        } else if (id === "blog") {
-            initBlogPagination();
+    // Initialize components after they are injected
+    if (id === "navbar") {
+        initNavbar();
+    } else if (id === "blog") {
+        const container = document.getElementById("blog-page-1");
+        if (container && typeof window.loadWixBlog === "function") {
+            window.loadWixBlog();
+        } else if (!container) {
+            console.error("[Blog] #blog-page-1 not found after injecting blog section");
         }
-    } catch (error) {
-        console.error(`Error loading component ${id} from ${file}:`, error);
-        // Don't break the page if a component fails to load
+    } else if (id === "footer") {
+        initFooter();
+    }
+}
+
+function initFooter() {
+    // reCAPTCHA in the footer is configured for paperprisons.org. On localhost
+    // it causes "Unable to post message" and origin errors. Hide it when not
+    // on that domain so local dev and Diversity Pilots don't break.
+    const isLocal = /^localhost$|^127\.0\.0\.1$/i.test(window.location.hostname);
+    const isPaperPrisons = /paperprisons\.org$/i.test(window.location.hostname);
+    if (isLocal || !isPaperPrisons) {
+        const recaptchaContainer = document.querySelector(".g-recaptcha");
+        if (recaptchaContainer) recaptchaContainer.remove();
+        const recaptchaScript = document.querySelector('script[src*="google.com/recaptcha"]');
+        if (recaptchaScript) recaptchaScript.remove();
     }
 }
 
@@ -39,31 +48,19 @@ function initNavbar() {
         });
     }
     
-    // Fix navbar links based on current page location
     const currentPath = window.location.pathname;
+    const isBlogDetails = currentPath.includes('/components/blogdetails/');
+    const isDashboard = currentPath.includes('/dashboard/');
+    const isComponents = currentPath.includes('/components/') && !isBlogDetails;
     
-    // Remove GitHub Pages base path if present (e.g., /diversitypilots/)
-    const pathParts = currentPath.split('/').filter(p => p);
-    const repoName = pathParts[0]; // First part might be repo name
-    
-    // Check if we're in blogdetails
-    const blogDetailsIndex = pathParts.indexOf('components');
-    const isBlogDetails = blogDetailsIndex !== -1 && pathParts[blogDetailsIndex + 1] === 'blogdetails';
-    const isComponents = pathParts.includes('components') && !isBlogDetails;
-    
-    // Calculate base path relative to root
+    // Calculate base path
     let basePath = '';
     if (isBlogDetails) {
         basePath = '../../';
-    } else if (isComponents) {
+    } else if (isDashboard || isComponents) {
         basePath = '../';
     } else {
-        // For root pages, check if we need to account for repo name
-        if (repoName && repoName !== 'index.html' && !repoName.endsWith('.html')) {
-            basePath = './';
-        } else {
-            basePath = './';
-        }
+        basePath = './';
     }
     
     // Update all navbar links
@@ -72,6 +69,13 @@ function initNavbar() {
         const targetFile = link.getAttribute('data-nav-link');
         link.setAttribute('href', basePath + targetFile);
     });
+
+    // Fix logo image path for subpages (dashboard, blog details, etc.)
+    const logoImg = document.querySelector('[data-nav-logo]');
+    if (logoImg) {
+        const logoPath = logoImg.getAttribute('data-nav-logo');
+        logoImg.setAttribute('src', basePath + logoPath);
+    }
 }
 
 // Accordion toggle function for diary page
@@ -94,7 +98,11 @@ function toggleAccordion(id) {
 window.toggleAccordion = toggleAccordion;
 
 /* -------------------------
-   BLOG PAGINATION LOGIC
+   WIX BLOG: loaded from scripts/wix-blog.js (API + links to your Wix site)
+   ------------------------- */
+
+/* -------------------------
+   BLOG PAGINATION LOGIC (legacy, for multi-page blog UI)
    ------------------------- */
 
 function initBlogPagination() {
@@ -191,17 +199,28 @@ function initBlogPagination() {
     showPage(1);
 }
 
-// Load components only if we're on a page that needs them
-// This prevents errors on pages that load components manually
-document.addEventListener('DOMContentLoaded', function() {
-    // Only auto-load if the elements exist and haven't been loaded yet
-    if (document.getElementById("navbar") && !document.getElementById("navbar").innerHTML.trim()) {
-        loadComponent("navbar", "./components/navbar.html");
+function isBlogPage() {
+    var path = window.location.pathname || "";
+    return /blog\.html$/.test(path) || /\/blog\/?$/.test(path.replace(/\/$/, ""));
+}
+
+function isDiaryPage() {
+    var path = window.location.pathname || "";
+    return /diary\.html$/.test(path) || /diary2\.html$/.test(path) || /\/diary\/?$/.test(path.replace(/\/$/, ""));
+}
+
+// Load components: on blog.html the blog layout is inlined, so we only run loadWixBlog().
+// On diary pages we only load navbar and footer (no blog section).
+(async function init() {
+    await loadComponent("navbar", "./components/navbar.html");
+    if (isBlogPage()) {
+        // Blog layout is already in blog.html; just load posts.
+        var container = document.getElementById("blog-page-1");
+        if (container && typeof window.loadWixBlog === "function") {
+            window.loadWixBlog();
+        }
+    } else if (!isDiaryPage()) {
+        await loadComponent("blog", "./components/blogsection.html");
     }
-    if (document.getElementById("blog") && !document.getElementById("blog").innerHTML.trim()) {
-        loadComponent("blog", "./components/blogsection.html");
-    }
-    if (document.getElementById("footer") && !document.getElementById("footer").innerHTML.trim()) {
-        loadComponent("footer", "./components/footer.html");
-    }
-});
+    await loadComponent("footer", "./components/footer.html");
+})();

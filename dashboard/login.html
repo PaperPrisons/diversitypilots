@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Org Login - Diversity Pilots Initiative</title>
+  <link rel="stylesheet" href="../dist/output.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="bg-white text-gray-900">
+  <!-- NAVBAR -->
+  <div id="navbar"></div>
+
+  <!-- LOGIN -->
+  <section id="loginRoot" class="w-full bg-white py-16">
+    <div class="max-w-md mx-auto px-6">
+      <h1 class="text-3xl font-bold text-gray-900 mb-6">Organization Login</h1>
+      <p class="text-gray-600 mb-6">Sign in with your org email to access the blog dashboard.</p>
+      <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+        <label class="block text-sm font-medium text-gray-700 mb-1" for="emailInput">Email</label>
+        <input id="emailInput" type="email" class="w-full rounded border-gray-300 focus:border-[#8C1D40] focus:ring-[#8C1D40]" placeholder="you@org.com" />
+
+        <label class="block text-sm font-medium text-gray-700 mb-1 mt-4" for="passwordInput">Password</label>
+        <input id="passwordInput" type="password" class="w-full rounded border-gray-300 focus:border-[#8C1D40] focus:ring-[#8C1D40]" placeholder="••••••••" />
+
+        <button id="emailLoginBtn" class="mt-4 w-full bg-[#8C1D40] hover:bg-[#4A0E22] text-white font-semibold px-6 py-3 rounded">Sign in</button>
+        <button id="googleLoginBtn" class="mt-3 w-full bg-white border border-gray-300 hover:bg-gray-100 text-gray-800 font-semibold px-6 py-3 rounded flex items-center justify-center">
+          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="" class="w-5 h-5 mr-2" />
+          Continue with Google
+        </button>
+
+        <p id="loginMessage" class="mt-3 text-sm"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div id="footer"></div>
+
+  <script src="../scripts/main.js"></script>
+  <!-- Firebase SDKs (Compat) -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-storage-compat.js"></script>
+  <script src="../scripts/firebase.js"></script>
+  <script src="../scripts/dashboard.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      loadComponent('navbar', '../components/navbar.html');
+      loadComponent('footer', '../components/footer.html');
+    });
+  </script>
+</body>
+</html>

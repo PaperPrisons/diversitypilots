@@ -1,25 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog - Diversity Pilots Initiative</title>
-    <link rel="stylesheet" href="./dist/output.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DPI Blog</title>
+  <link rel="stylesheet" href="./dist/output.css" />
 </head>
+
 <body class="bg-white text-gray-900">
-    <!-- NAVBAR -->
-    <div id="navbar"></div>
 
-    <!-- BLOG CONTENT -->
-    <div id="blog"></div>
+  <!-- NAVBAR -->
+  <div id="navbar"></div>
 
-    <!-- FOOTER -->
-    <div id="footer"></div>
+  <!-- RESEARCH BLOG header: always visible, never replaced -->
+  <header id="blog-header" class="w-full py-8 md:py-12 shrink-0" style="background-color: #8C1D40;">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-wide uppercase text-white">RESEARCH BLOG</h1>
+      <div class="mt-3 mx-auto w-32 border-b-2 border-white" aria-hidden="true"></div>
+    </div>
+  </header>
 
-    <script src="./scripts/main.js"></script>
-    <script>
-        // Load blog content
-        loadComponent("blog", "./components/blogsection.html");
-    </script>
+  <!-- BLOG: grid + pagination loaded by wix-blog.js -->
+  <section id="blog" style="background-color: #f8f7f5;">
+    <div class="w-full py-12 md:py-16">
+      <div id="blog-page-1" class="max-w-7xl mx-auto px-6 sm:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 lg:gap-12 min-h-[200px]">
+        <p class="col-span-full text-center text-gray-500">Loading posts…</p>
+      </div>
+      <nav id="blog-pagination" class="max-w-7xl mx-auto px-6 sm:px-8 mt-12 flex justify-center items-center gap-2 flex-wrap" aria-label="Blog pagination"></nav>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div id="footer"></div>
+
+  <script src="./scripts/wix-blog.js"></script>
+  <script src="./scripts/main.js"></script>
+
 </body>
-</html> 
+</html>
