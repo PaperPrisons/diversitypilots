@@ -448,7 +448,7 @@
               //     quotesData[i].conviction_years_ago.trim() +
               //     " years ago";
               // }
-              pElement.innerHTM += "</span>";
+              pElement.innerHTML += "</span>";
               // <br/><img id='ppLogo' src='images/LogoWhiteWords.png' alt='@PaperPrisons'/>";
               //console.log(quoteElement);
               quoteElement.appendChild(pElement);
@@ -563,6 +563,8 @@
       <!--#include file="includes/footer.html"-->
     </section>
 
+    <!-- FOOTER (injected by main.js) -->
+    <div id="footer"></div>
     <script type="text/javascript">
       function handlePause() {
         paused = !paused;
@@ -573,5 +575,6 @@
         document.getElementById("pause").children[0].innerText = out;
       }
     </script>
+    <script src="./scripts/main.js"></script>
   </body>
 </html>

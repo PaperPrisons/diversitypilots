@@ -199,9 +199,28 @@ function initBlogPagination() {
     showPage(1);
 }
 
-// Load components: await blog so loadWixBlog runs after #blog-page-1 exists
+function isBlogPage() {
+    var path = window.location.pathname || "";
+    return /blog\.html$/.test(path) || /\/blog\/?$/.test(path.replace(/\/$/, ""));
+}
+
+function isDiaryPage() {
+    var path = window.location.pathname || "";
+    return /diary\.html$/.test(path) || /diary2\.html$/.test(path) || /\/diary\/?$/.test(path.replace(/\/$/, ""));
+}
+
+// Load components: on blog.html the blog layout is inlined, so we only run loadWixBlog().
+// On diary pages we only load navbar and footer (no blog section).
 (async function init() {
     await loadComponent("navbar", "./components/navbar.html");
-    await loadComponent("blog", "./components/blogsection.html");
+    if (isBlogPage()) {
+        // Blog layout is already in blog.html; just load posts.
+        var container = document.getElementById("blog-page-1");
+        if (container && typeof window.loadWixBlog === "function") {
+            window.loadWixBlog();
+        }
+    } else if (!isDiaryPage()) {
+        await loadComponent("blog", "./components/blogsection.html");
+    }
     await loadComponent("footer", "./components/footer.html");
 })();
