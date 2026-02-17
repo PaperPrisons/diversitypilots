@@ -25,9 +25,7 @@ async function loadComponent(id, file) {
 }
 
 function initFooter() {
-    // reCAPTCHA in the footer is configured for paperprisons.org. On localhost
-    // it causes "Unable to post message" and origin errors. Hide it when not
-    // on that domain so local dev and Diversity Pilots don't break.
+   
     const isLocal = /^localhost$|^127\.0\.0\.1$/i.test(window.location.hostname);
     const isPaperPrisons = /paperprisons\.org$/i.test(window.location.hostname);
     if (isLocal || !isPaperPrisons) {
@@ -195,7 +193,7 @@ function initBlogPagination() {
         });
     }
 
-    // Initialize on page 1
+
     showPage(1);
 }
 
@@ -209,16 +207,55 @@ function isDiaryPage() {
     return /diary\.html$/.test(path) || /diary2\.html$/.test(path) || /\/diary\/?$/.test(path.replace(/\/$/, ""));
 }
 
+function isConferencePage() {
+    var path = window.location.pathname || "";
+    return /conference\.html$/.test(path) || /\/conference\/?$/.test(path.replace(/\/$/, ""));
+}
+
+function is404Page() {
+    var path = window.location.pathname || "";
+    return /404\.html$/.test(path) || /\/404\/?$/.test(path.replace(/\/$/, ""));
+}
+
+/** List of pathnames that are valid pages. Any other path should show 404. */
+function isAllowedPath(pathname) {
+    var p = (pathname || "").replace(/\/$/, "") || "/";
+    if (p === "/" || p === "/index.html") return true;
+    if (["/blog.html", "/team.html", "/diary.html", "/diary2.html", "/conference.html", "/admin.html", "/404.html"].indexOf(p) !== -1) return true;
+    if (p === "/dashboard" || p === "/dashboard/" || p === "/dashboard/index.html" || p === "/dashboard/login.html") return true;
+    if (/^\/components\/blogdetails\/[^/]+\.html$/.test(p)) return true;
+    return false;
+}
+
+/** Relative URL to 404.html from the current path (for redirect). */
+function get404RedirectUrl() {
+    var pathname = window.location.pathname || "";
+    var segments = pathname.split("/").filter(Boolean);
+    var base = segments.length > 1 ? "../".repeat(segments.length - 1) : "./";
+    return base + "404.html";
+}
+
 // Load components: on blog.html the blog layout is inlined, so we only run loadWixBlog().
 // On diary pages we only load navbar and footer (no blog section).
+// On conference page we load the conference section.
 (async function init() {
+    // If user landed on a wrong/unknown URL, show 404 (don’t run on 404 page itself to avoid loop)
+    if (!is404Page() && !isAllowedPath(window.location.pathname)) {
+        window.location.replace(get404RedirectUrl());
+        return;
+    }
+
     await loadComponent("navbar", "./components/navbar.html");
-    if (isBlogPage()) {
+    if (is404Page()) {
+        // 404 page: only navbar and footer (loaded below).
+    } else if (isBlogPage()) {
         // Blog layout is already in blog.html; just load posts.
         var container = document.getElementById("blog-page-1");
         if (container && typeof window.loadWixBlog === "function") {
             window.loadWixBlog();
         }
+    } else if (isConferencePage()) {
+        await loadComponent("conference", "./components/conferencesection.html");
     } else if (!isDiaryPage()) {
         await loadComponent("blog", "./components/blogsection.html");
     }

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="/" />
+  <script>
+    (function() {
+      var path = location.pathname;
+      var base = path.lastIndexOf('/') <= 0 ? '/' : path.substring(0, path.lastIndexOf('/') + 1);
+      var b = document.querySelector('base');
+      if (b) b.href = base;
+    })();
+  </script>
+  <title>404 - Page Not Found | Diversity Pilots Initiative</title>
+  <meta name="description" content="The page you're looking for doesn't exist. Return to Diversity Pilots Initiative home." />
+  <link rel="canonical" href="https://yoursite.com/404.html" />
+  <meta property="og:title" content="404 - Page Not Found | Diversity Pilots Initiative" />
+  <meta property="og:description" content="The page you're looking for doesn't exist." />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="dist/output.css" />
+  <link rel="stylesheet" href="404.css" />
+</head>
+<body class="bg-white text-gray-900 min-h-screen flex flex-col">
+  <div id="navbar"></div>
+
+  <main class="flex-1 flex flex-col items-center justify-center relative py-12 px-4">
+    <h1 class="text-4xl md:text-5xl font-bold text-center mb-6" style="color:#8C1D40;">404 — OOPS, COULDN'T FIND PAGE</h1>
+    <div class="me404">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" class="w-full h-auto max-w-[1000px]" aria-hidden="true">
+        <g id="cloud"><ellipse class="st0" cx="200" cy="120" rx="80" ry="40"/></g>
+        <g id="moon"><circle class="st1" cx="640" cy="81" r="35"/></g>
+        <g id="monkey-eye-l" transform="translate(191,257)"><ellipse class="st9" cx="0" cy="0" rx="6" ry="8"/></g>
+        <g id="monkey-eye-r" transform="translate(205,256)"><ellipse class="st9" cx="0" cy="0" rx="6" ry="8"/></g>
+        <g id="monkey-arm" transform="translate(155,298)"><path class="st10" d="M0 0 l30 -20"/></g>
+        <g id="star1"><path class="st11" d="M643 338 l0-20 8 10-8 10z" transform="rotate(0 643 338)"/></g>
+        <g id="star2"><path class="st11" d="M489 82 l0-16 6 8-6 8z" transform="rotate(0 489 82)"/></g>
+        <g id="star3"><path class="st11" d="M316 344 l0-18 7 9-7 9z" transform="rotate(0 316 344)"/></g>
+        <g id="star4"><path class="st11" d="M126 182 l0-14 6 7-6 7z" transform="rotate(0 126 182)"/></g>
+        <g id="sword-path"><g id="sword"><path class="st7" d="M458 180 L458 230" transform="rotate(-40 458 206)"/></g></g>
+        <g id="tetris-path"><g id="tetris"><rect class="st4" x="518" y="354" width="40" height="40" transform="rotate(0 538 374)"/></g></g>
+        <g id="triforce"><path class="st5" d="M175 61 L215 121 135 121 Z M175 91 L155 121 195 121 Z" transform="translate(0 0)"/></g>
+        <rect class="st2" width="800" height="480" fill="url(#sky)"/>
+        <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E8EBED"/><stop offset="100%" stop-color="#DBDFE1"/></linearGradient></defs>
+      </svg>
+    </div>
+    <p class="text-lg text-gray-600 mt-6 text-center max-w-md">The page you're looking for doesn't exist. <a href="index.html" class="underline font-semibold" style="color:#8C1D40;">Back to home</a>.</p>
+  </main>
+
+  <div id="footer"></div>
+  <script src="scripts/main.js"></script>
+</body>
+</html>

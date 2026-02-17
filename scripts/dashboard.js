@@ -1,7 +1,6 @@
 // scripts/dashboard.js
 
 (function() {
-  // Ensure Firebase is initialized
   const hasFirebase = typeof firebase !== 'undefined' && window.firebaseInitialized;
 
   document.addEventListener('DOMContentLoaded', () => {
@@ -255,7 +254,6 @@
     };
 
     submitBtn.textContent = 'Update Draft';
-    // Replace button to drop previous listeners
     const newBtn = submitBtn.cloneNode(true);
     submitBtn.parentNode.replaceChild(newBtn, submitBtn);
     newBtn.addEventListener('click', handler);
