@@ -1,5 +1,37 @@
 # DiversityPilots
 
+## Deploy to GitHub Pages
+
+1. **Push your code to GitHub** (if you haven’t already):
+   ```bash
+   git add .
+   git commit -m "Prepare for GitHub Pages"
+   git push origin bhoomika
+   ```
+   To publish from `main` instead: `git checkout main`, merge your changes, then `git push origin main`.
+
+2. **Enable GitHub Pages** in the repo:
+   - Open **https://github.com/PaperPrisons/diversitypilots**
+   - Go to **Settings → Pages**
+   - Under **Build and deployment**, set **Source** to **Deploy from a branch**
+   - Choose **Branch**: `main` or `bhoomika`, **Folder**: `/ (root)**
+   - Click **Save**
+
+3. **Wait a minute or two.** Your site will be at:
+   - **https://paperprisons.github.io/diversitypilots/** (if the repo is `PaperPrisons/diversitypilots`)
+
+4. **After changing Tailwind/CSS**, rebuild and commit so the live site updates:
+   ```bash
+   npm run build:css
+   git add dist/output.css
+   git commit -m "Update CSS"
+   git push
+   ```
+
+The repo includes a `.nojekyll` file so GitHub serves the site as plain static files (no Jekyll processing).
+
+---
+
 ## Blog Dashboard (Org-only)
 
 This repo now includes a client-side scaffold for an internal blog dashboard under `dashboard/`:
