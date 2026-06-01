@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,57 +9,38 @@
 </head>
 
 <body class="bg-white text-gray-900">
-  <!-- NAVBAR -->
-  <div id="navbar"></div>
 
-  <!-- HERO SECTION -->
-  <section class="bg-[#8C1D40] text-white py-16">
-    <div class="max-w-4xl mx-auto px-2 ">
-      <h1 class="sm:text-4xl text-center md:text-6xl text-6xl md:text-6xl font-bold mb-4">Innovator Diversity Pilots Initiative</h1>
-      <p class="text-lg opacity-90 text-center">Rigorous research to advance inclusion in innovation</p>
+  <div id="header"></div>
+
+  <section class="w-full bg-white py-20">
+    <div class="max-w-5xl mx-auto px-6 text-center leading-relaxed text-lg space-y-6">
+      <h2 class="text-4xl font-bold tracking-wide" style="color:#8C1D40">ABOUT</h2>
+      <p>We are a group of researchers that works with firms and organizations to advance diversity and inclusion in
+        innovation by coupling our understanding of institutional details and dynamics associated with patenting, law
+        firm advancement, and innovation processes with econometric and social science approaches.</p>
+      <p>Our research draws upon our experience with method such as surveying, rigorous piloting using experimental
+        (randomized) or quasi-experimental methods, and observational analyses and our expertise in topics ranging from
+        mentoring to inequality in innovation to inclusive government policy. Our DPI blog disseminates and elevates
+        research findings on what works in diversity in innovation.</p>
+      <div class="mx-auto w-full max-w-4xl flex flex-nowrap items-center justify-center gap-6 sm:gap-8 overflow-x-auto">
+        <img src="images/logos/DPI.png" alt="DPI" class="h-12 sm:h-14 w-auto object-contain shrink-0" />
+        <img src="images/logos/ADAPT.avif" alt="ADAPT" class="h-12 sm:h-14 w-auto object-contain shrink-0" />
+        <img src="images/logos/Emory.jpg" alt="Emory Law" class="h-12 sm:h-14 w-auto object-contain shrink-0" />
+        <img src="images/logos/USPTO.png" alt="USPTO" class="h-12 sm:h-14 w-auto object-contain shrink-0" />
+        <img src="images/logos/UCB_CLT.png" alt="UC Berkeley CLT" class="h-12 sm:h-14 w-auto object-contain shrink-0" />
+        <img src="images/logos/NCPP.jpg" alt="NCPP" class="h-12 sm:h-14 w-auto object-contain shrink-0" />
+      </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="w-full bg-white py-20">
-  <div class="max-w-5xl mx-auto px-6 text-center leading-relaxed text-lg space-y-6">
-    
-    <h2 class="text-4xl font-bold tracking-wide" style="color:#8C1D40">
-      ABOUT
-    </h2>
-
-    <p>
-      We are a group of researchers that works with firms and organizations to advance 
-      diversity and inclusion in innovation by coupling our understanding of institutional 
-      details and dynamics associated with patenting, law firm advancement, and innovation 
-      processes with econometric and social science approaches.
-    </p>
-
-    <p>
-      Our research draws upon our experience with methods such as surveying, rigorous 
-      piloting using experimental (randomized) or quasi-experimental methods, and 
-      observational analyses and our expertise in topics ranging from mentoring to 
-      inequality in innovation to inclusive government policy. Our DPI blog disseminates 
-      and elevates research findings on what works in diversity in innovation.
-    </p>
-
-    <div class="mx-auto w-full max-w-4xl flex flex-nowrap items-center justify-center gap-6 sm:gap-8 overflow-x-auto">
-      <img src="images/logos/DPI.png" alt="Diversity Pilots Initiative" class="h-12 sm:h-14 w-auto object-contain shrink-0" />
-      <img src="images/logos/ADAPT.avif" alt="ADAPT" class="h-12 sm:h-14 w-auto object-contain shrink-0" />
-      <img src="images/logos/Emory.jpg" alt="Emory Law - Institute for Intellectual Property & Social Justice" class="h-12 sm:h-14 w-auto object-contain shrink-0" />
-      <img src="images/logos/USPTO.png" alt="United States Patent and Trademark Office" class="h-12 sm:h-14 w-auto object-contain shrink-0" />
-      <img src="images/logos/UCB_CLT.png" alt="UC Berkeley Center for Law and Technology" class="h-12 sm:h-14 w-auto object-contain shrink-0" />
-      <img src="images/logos/NCPP.jpg" alt="NCPP" class="h-12 sm:h-14 w-auto object-contain shrink-0" />
-    </div>
-
-  </div>
-</section>
-
-
-
-  <!-- FOOTER -->
   <div id="footer"></div>
-  <script src="./scripts/wix-blog.js"></script>
-  <script src="./scripts/main.js"></script>
+
+  <script src="./scripts/include.js"></script>
+  <script>
+    htmlInclude('header', './components/header.html').then(function () { initHeader('Diversity Pilots Initiative'); });
+    htmlInclude('footer', './components/footer.html');
+  </script>
+
 </body>
+
 </html>

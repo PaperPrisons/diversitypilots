@@ -1,0 +1,47 @@
+<header class="text-white shadow-md" style="background-color: rgba(177, 30, 58);">
+  <div class="max-w-7xl mx-auto px-6 py-8 flex items-center justify-between">
+
+    <!-- Left: Logo -->
+    <div class="flex-1">
+      <a href="./index.html">
+        <img fetchpriority="high" src="./images/dpi-logo.png" width="160" class="h-auto block"
+          alt="Diversity Pilots Initiative">
+      </a>
+    </div>
+
+    <!-- Center: Page Title -->
+    <div class="flex-1 text-center">
+      <span id="page-title" class="text-3xl font-bold uppercase tracking-wide"></span>
+    </div>
+
+    <!-- Right: Nav links + mobile button -->
+    <div class="flex-1 flex justify-end items-center gap-8">
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="./index.html"
+          class="text-sm font-semibold uppercase tracking-wide hover:opacity-75 transition">Home</a>
+        <a href="./team.html" class="text-sm font-semibold uppercase tracking-wide hover:opacity-75 transition">Team</a>
+        <a href="./diary.html"
+          class="text-sm font-semibold uppercase tracking-wide hover:opacity-75 transition">Diary</a>
+        <a href="./blog.html" class="text-sm font-semibold uppercase tracking-wide hover:opacity-75 transition">Blog</a>
+      </nav>
+      <button id="menu-btn" class="md:hidden text-white" aria-label="Toggle navigation">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Mobile dropdown -->
+  <div id="mobile-menu" class="hidden px-6 pb-4" style="background-color: rgba(140, 29, 64, 1);">
+    <a href="./index.html"
+      class="block py-2 px-4 rounded text-sm font-semibold uppercase tracking-wide hover:bg-[#4A0E22]">Home</a>
+    <a href="./team.html"
+      class="block py-2 px-4 rounded text-sm font-semibold uppercase tracking-wide hover:bg-[#4A0E22]">Team</a>
+    <a href="./diary.html"
+      class="block py-2 px-4 rounded text-sm font-semibold uppercase tracking-wide hover:bg-[#4A0E22]">Diary</a>
+    <a href="./blog.html"
+      class="block py-2 px-4 rounded text-sm font-semibold uppercase tracking-wide hover:bg-[#4A0E22]">Blog</a>
+  </div>
+</header>
