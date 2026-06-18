@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Team - Diversity Pilots Initiative</title>
-    <link rel="stylesheet" href="./dist/output.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Team - Diversity Pilots Initiative</title>
+  <link rel="stylesheet" href="./dist/output.css" />
 </head>
 <body class="bg-white text-gray-900">
-    <!-- NAVBAR -->
-    <div id="navbar"></div>
 
-    <!-- TEAM CONTENT -->
-    <div id="team"></div>
+  <div id="header"></div>
+  <div id="teams"></div>
+  <div id="footer"></div>
 
-    <!-- FOOTER -->
-    <div id="footer"></div>
+  <script src="./scripts/include.js"></script>
+  <script>
+    htmlInclude('header', './components/header.html').then(function() { initHeader('Our Team'); });
+    htmlInclude('teams', './components/teams.html');
+    htmlInclude('footer', './components/footer.html');
+  </script>
 
-    <script src="./scripts/main.js"></script>
-    <script>
-        // Load team content
-        loadComponent("team", "./components/teams.html");
-    </script>
 </body>
 </html>
